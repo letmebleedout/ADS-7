@@ -2,52 +2,20 @@
 #include "train.h"
 
 Train::Train()
-  : first(nullptr)
+  : nCars(0)
   , countOp(0)
 {}
 
 Train::~Train() {
-  if (!first) return;
-  Car* cur = first->next;
-  while (cur != first) {
-    Car* tmp = cur;
-    cur = cur->next;
-    delete tmp;
-  }
-  delete first;
 }
 
-void Train::addCar(bool light) {
-  Car* car = new Car;
-  car->light = light;
-  if (!first) {
-    car->next = car;
-    car->prev = car;
-    first = car;
-  } else {
-    Car* last = first->prev;
-    last->next = car;
-    car->prev = last;
-    car->next = first;
-    first->prev = car;
-  }
+void Train::addCar(bool /*light*/) {
+  ++nCars;
 }
 
 int Train::getLength() {
-  if (!first) {
-    countOp = 0;
-    return 0;
-  }
-
-  int length = 1;
-  Car* cur = first->next;
-  while (cur != first) {
-    ++length;
-    cur = cur->next;
-  }
-
-  countOp = length * 2;
-  return length;
+  countOp = nCars * 2;
+  return nCars;
 }
 
 int Train::getOpCount() const {
