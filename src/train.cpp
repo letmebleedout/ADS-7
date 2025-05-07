@@ -2,7 +2,8 @@
 #include "train.h"
 
 Train::Train()
-  : first(nullptr), countOp(0)
+  : first(nullptr)
+  , countOp(0)
 {}
 
 Train::~Train() {
@@ -15,6 +16,7 @@ Train::~Train() {
   }
   delete first;
 }
+
 void Train::addCar(bool light) {
   Car* car = new Car{ light, nullptr, nullptr };
   if (!first) {
@@ -29,17 +31,20 @@ void Train::addCar(bool light) {
     first->prev = car;
   }
 }
+
 int Train::getLength() {
   if (!first) return 0;
-  countOp = 0;
 
+  countOp = 0;
   Car* cur = first;
   do {
-    if (cur->light) cur->light = false;
+    cur->light = false;
     cur = cur->next;
     ++countOp;
   } while (cur != first);
+
   first->light = true;
+
   int length = 0;
   cur = first->next;
   ++countOp;
@@ -49,13 +54,10 @@ int Train::getLength() {
     ++countOp;
     ++length;
   }
+
   return length;
 }
-  cur->light = init;
-  int length = transitions;
-  countOp = transitions * 2;
-  return length;
-}
+
 int Train::getOpCount() const {
   return countOp;
 }
