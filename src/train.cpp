@@ -6,8 +6,7 @@ Train::Train()
   , countOp(0)
 {}
 
-Train::~Train() {
-}
+Train::~Train() {}
 
 void Train::addCar(bool /*light*/) {
   ++nCars;
