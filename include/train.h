@@ -2,25 +2,23 @@
 #ifndef INCLUDE_TRAIN_H_
 #define INCLUDE_TRAIN_H_
 
-struct Car {
-  bool light;
-  Car* next;
-  Car* prev;
-};
-
 class Train {
   private:
+    struct Car {
+      bool light;
+      Car* next;
+      Car* prev;
+    };
     Car* first;
-    int countOp;
+    int size;      
+    int countOp;   
 
   public:
     Train();
     ~Train();
 
     void addCar(bool light);
-
     int getLength();
-
     int getOpCount() const;
 };
 
