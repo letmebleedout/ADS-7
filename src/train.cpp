@@ -1,8 +1,7 @@
 // Copyright 2021 NNTU-CS
-#include "train.h"
-
 Train::Train()
   : first(nullptr)
+  , size(0)
   , countOp(0)
 {}
 
@@ -30,20 +29,12 @@ void Train::addCar(bool light) {
     car->next = first;
     first->prev = car;
   }
+  ++size;
 }
 
 int Train::getLength() {
-  if (!first) return 0;
-
-  int length = 1;
-  Car* cur = first->next;
-  while (cur != first) {
-    ++length;
-    cur = cur->next;
-  }
-
-  countOp = length * 2;
-  return length;
+  countOp = size * 2;
+  return size;
 }
 
 int Train::getOpCount() const {
